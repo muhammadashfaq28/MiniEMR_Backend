@@ -9,14 +9,14 @@
         public string Role { get; set; } = string.Empty;
         public string? Specialization { get; set; }
         public bool IsActive { get; set; }
-        public DateTime CreatedAT { get; set; }
+        public DateTime CreatedAt { get; set; }
 
         public ICollection<Appointment>? DoctorAppointments { get; set; }
-        public ICollection<Appointment>? CreateAppointments { get; set; }
+        public ICollection<Appointment>? CreatedAppointments { get; set; }
 
-        public ICollection<Appointment>? UpdatedAppointment { get; set; }
+        public ICollection<Appointment>? UpdatedAppointments { get; set; }
         public ICollection<Patient>? CreatedPatients { get; set; }
-        public ICollection<Patient>? UpdatedPatient {  get; set; }
+        public ICollection<Patient>? UpdatedPatients {  get; set; }
 
     }
 }
