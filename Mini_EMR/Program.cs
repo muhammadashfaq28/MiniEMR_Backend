@@ -27,19 +27,4 @@ app.UseAuthorization();
 
 app.MapControllers();
 
-//using (var scope = app.Services.CreateScope())
-//{
-//    var dbContext = scope.ServiceProvider
-//        .GetRequiredService<ApplicationDbContext>();
-
-//    if (dbContext.Database.CanConnect())
-//    {
-//        Console.WriteLine("Database Connected Successfully!");
-//    }
-//    else
-//    {
-//        Console.WriteLine("Database Connection Failed!");
-//    }
-//}
-
 app.Run();
