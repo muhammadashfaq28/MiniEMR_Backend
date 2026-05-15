@@ -13,12 +13,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Models\" />
     <Folder Include="Controllers\" />
-    <Folder Include="Repositories\Interfaces\" />
-    <Folder Include="Repositories\Implementation\" />
-    <Folder Include="Services\Interfaces\" />
-    <Folder Include="Services\Implementation\" />
   </ItemGroup>
 
 </Project>
