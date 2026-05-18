@@ -25,6 +25,7 @@ namespace Mini_EMR.EntityConfigurations
                 .IsRequired();
 
             builder.Property(x => x.Status)
+                .HasConversion<string>()
                 .IsRequired()
                 .HasMaxLength(20);
 
