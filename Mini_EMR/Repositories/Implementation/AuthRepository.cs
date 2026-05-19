@@ -18,5 +18,17 @@ namespace Mini_EMR.Repositories.Implementation
                  .AsNoTracking()
                  .FirstOrDefaultAsync(x => x.Username == username);
         }
+        public async Task<List<User>> GetDoctorsAsync()
+        {
+            return await _context.Users
+                .Where(x => x.Role == "Doctor")
+                .AsNoTracking()
+                .ToListAsync();
+        }
+        public async Task<User?> GetByIdAsync(int id)
+        {
+            return await _context.Users
+                .FirstOrDefaultAsync(x => x.Id == id);
+        }
     }
 }

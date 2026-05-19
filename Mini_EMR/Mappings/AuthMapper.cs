@@ -1,5 +1,6 @@
 ﻿using Mini_EMR.Entities;
 using Mini_EMR.Models.Auth;
+using Mini_EMR.Models.Users;
 
 namespace Mini_EMR.Mappings
 {
@@ -18,5 +19,17 @@ namespace Mini_EMR.Mappings
                 Specialization = user.Specialization
             };
         }
+
+        public static DoctorModel ToDoctorModel(User user)
+        {
+            return new DoctorModel
+            {
+                Id = user.Id,
+                FullName = user.FullName,
+                Specialization = user.Specialization
+            };
+        }
     }
+
+
 }

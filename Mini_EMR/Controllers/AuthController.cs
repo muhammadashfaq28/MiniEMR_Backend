@@ -1,4 +1,5 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc;
 using Mini_EMR.Models.Auth;
 using Mini_EMR.Services.Interfaces;
 
@@ -29,6 +30,16 @@ namespace Mini_EMR.Controllers
             }
 
             return Ok(response);
+        }
+
+        [HttpGet("doctors")]
+        [Authorize]
+        public async Task<IActionResult> GetDoctorsAsync()
+        {
+            var doctors = await _authService
+                .GetDoctorsAsync();
+
+            return Ok(doctors);
         }
     }
 }

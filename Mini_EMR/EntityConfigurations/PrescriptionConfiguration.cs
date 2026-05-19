@@ -36,14 +36,12 @@ namespace Mini_EMR.EntityConfigurations
 
             builder.HasOne(x => x.Visit)
                 .WithMany(x => x.Prescriptions)
-                .HasForeignKey(x => x.VisitId)
-                .OnDelete(DeleteBehavior.Cascade);
+                .HasForeignKey(x => x.VisitId);
 
 
             builder.HasOne(x => x.Medicine)
-                .WithMany(x => x.Prescriptions)
-                .HasForeignKey(x => x.MedicineId)
-                .OnDelete(DeleteBehavior.NoAction);
+               .WithMany(x => x.Prescriptions)
+               .HasForeignKey(x => x.MedicineId);
 
 
 

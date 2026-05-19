@@ -1,13 +1,14 @@
-﻿using System.IdentityModel.Tokens.Jwt;
-using System.Security.Claims;
-using System.Text;
-using Microsoft.AspNetCore.Identity;
+﻿using Microsoft.AspNetCore.Identity;
 using Microsoft.IdentityModel.Tokens;
 using Mini_EMR.Entities;
 using Mini_EMR.Mappings;
 using Mini_EMR.Models.Auth;
+using Mini_EMR.Models.Users;
 using Mini_EMR.Repositories.Interfaces;
 using Mini_EMR.Services.Interfaces;
+using System.IdentityModel.Tokens.Jwt;
+using System.Security.Claims;
+using System.Text;
 
 namespace Mini_EMR.Services.Implementation
 {
@@ -96,6 +97,16 @@ namespace Mini_EMR.Services.Implementation
 
             return new JwtSecurityTokenHandler()
                 .WriteToken(token);
+        }
+
+        public async Task<List<DoctorModel>> GetDoctorsAsync()
+        {
+            var doctors = await _authRepository
+                .GetDoctorsAsync();
+
+            return doctors
+                .Select(AuthMapper.ToDoctorModel)
+                .ToList();
         }
     }
 }
