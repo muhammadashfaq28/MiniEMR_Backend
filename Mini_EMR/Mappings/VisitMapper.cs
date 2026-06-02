@@ -64,67 +64,42 @@ namespace Mini_EMR.Mappings
 
         //  RESPONSE MODEL 
 
-        public static VisitResponseModel
-            ToResponseModel(Visit visit)
+        public static VisitResponseModel ToResponseModel(Visit visit)
         {
             return new VisitResponseModel
             {
                 Id = visit.Id,
-
                 AppointmentId = visit.AppointmentId,
-
                 ChiefComplaint = visit.ChiefComplaint,
-
                 VisitNote = visit.VisitNote,
-
                 Diagnosis = visit.Diagnosis,
-
-                HeightCm = visit.HeightCm,
-
-                WeightKg = visit.WeightKg,
-
-                BpSystolic = visit.BpSystolic,
-
-                BpDiastolic = visit.BpDiastolic,
-
-                PulseBpm = visit.PulseBpm,
-
-                TemperatureC = visit.TemperatureC,
-
-                RespiratoryRate = visit.RespiratoryRate,
-
-                BMI = visit.BMI,
-
                 VisitDate = visit.VisitDate,
 
-                Prescriptions =
-                    visit.Prescriptions?
-                        .Select(p =>
-                            new PrescriptionResponseModel
-                            {
-                                Id = p.Id,
+                Vitals = new VitalsResponseModel
+                {
+                    HeightCm = visit.HeightCm,
+                    WeightKg = visit.WeightKg,
+                    BpSystolic = visit.BpSystolic,
+                    BpDiastolic = visit.BpDiastolic,
+                    PulseBpm = visit.PulseBpm,
+                    TemperatureF = visit.TemperatureC,
+                    RespiratoryRate = visit.RespiratoryRate,
+                    BMI = visit.BMI
+                },
 
-                                MedicineId = p.MedicineId,
-
-                                Dosage = p.Dosage,
-
-                                Frequency = p.Frequency,
-
-                                DurationDays = p.DurationDays,
-
-                                Instructions = p.Instructions,
-
-                                MedicineName =
-                                    p.Medicine?.Name
-                                    ?? string.Empty,
-
-                                Strength =
-                                    p.Medicine?.Strength
-                                    ?? string.Empty
-                            })
-                        .ToList()
-
-                    ?? []
+                Prescriptions = visit.Prescriptions?
+                    .Select(p => new PrescriptionResponseModel
+                    {
+                        Id = p.Id,
+                        MedicineId = p.MedicineId,
+                        Dosage = p.Dosage,
+                        Frequency = p.Frequency,
+                        DurationDays = p.DurationDays,
+                        Instructions = p.Instructions,
+                        MedicineName = p.Medicine?.Name ?? string.Empty,
+                        Strength = p.Medicine?.Strength ?? string.Empty
+                    })
+                    .ToList() ?? []
             };
         }
     }

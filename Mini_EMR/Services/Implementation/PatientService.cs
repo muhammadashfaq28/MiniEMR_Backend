@@ -1,5 +1,6 @@
 ﻿using Mini_EMR.Mappings;
 using Mini_EMR.Models.Patients;
+using Mini_EMR.Models.Visits;
 using Mini_EMR.Repositories.Implementation;
 using Mini_EMR.Repositories.Interfaces;
 using Mini_EMR.Services.Interfaces;
@@ -52,6 +53,11 @@ namespace Mini_EMR.Services.Implementation
             PatientMapper.UpdateEntity(patient, model, UpdatedById);
             await _repository.UpdateAsync(patient);
             return true;
+        }
+        public async Task<List<VisitResponseModel>> GetVisitsByPatientIdAsync(int patientId)
+        {
+            var visits = await _repository.GetVisitsByPatientIdAsync(patientId);
+            return visits.Select(VisitMapper.ToResponseModel).ToList();
         }
 
 

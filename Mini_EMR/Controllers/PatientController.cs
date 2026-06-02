@@ -74,7 +74,13 @@ namespace Mini_EMR.Controllers
                 Message = "Patient updated successfully"
             });
         }
-
+        [HttpGet("{id}/visits")]
+        [Authorize(Roles = "Doctor,Receptionist")]
+        public async Task<IActionResult> GetPatientVisitsAsync(int id)
+        {
+            var visits = await _service.GetVisitsByPatientIdAsync(id);
+            return Ok(visits);
+        }
 
     }
 }

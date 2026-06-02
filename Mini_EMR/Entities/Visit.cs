@@ -34,6 +34,6 @@ namespace Mini_EMR.Entities
 
         public Appointment? Appointment { get; set; }
 
-        public ICollection<Prescription>? Prescriptions{ get; set; } 
+        public virtual ICollection<Prescription> Prescriptions { get; set; } = new List<Prescription>();
     }
 }

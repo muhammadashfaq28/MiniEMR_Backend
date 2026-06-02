@@ -17,7 +17,10 @@
         public int? RespiratoryRate { get; set; }
         public decimal? BMI { get; set; }
         public DateTime VisitDate { get; set; }
+        public VitalsResponseModel Vitals { get; set; } = new();
         // Prescriptions
+
+
         public List<PrescriptionResponseModel>
             Prescriptions
         { get; set; } = [];

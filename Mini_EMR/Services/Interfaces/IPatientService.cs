@@ -1,4 +1,5 @@
 ﻿using Mini_EMR.Models.Patients;
+using Mini_EMR.Models.Visits;
 
 namespace Mini_EMR.Services.Interfaces
 {
@@ -8,5 +9,6 @@ namespace Mini_EMR.Services.Interfaces
         Task<PatientModel?> GetPatientByIdAsync(int id); 
         Task<PatientModel> CreatePatientAsync(CreatePatientModel patient, int CreatedById);
         Task<bool> UpdatePatientAsync(int id, UpdatePatientModel patient, int UpdatedById);
+        Task<List<VisitResponseModel>> GetVisitsByPatientIdAsync(int patientId);
     }
 }

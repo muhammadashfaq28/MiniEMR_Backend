@@ -36,6 +36,17 @@ namespace Mini_EMR.Repositories.Implementation
             _context.Patients.Update(patient);
             await _context.SaveChangesAsync();
         }
+        public async Task<List<Visit>> GetVisitsByPatientIdAsync(int patientId)
+        {
+            return await _context.Visits
+                .Include(v => v.Appointment)
+                    .ThenInclude(a => a.Doctor)
+                .Include(v => v.Prescriptions)
+                    .ThenInclude(p => p.Medicine)
+                .Where(v => v.Appointment!.PatientId == patientId)
+                .OrderByDescending(v => v.VisitDate)
+                .ToListAsync();
+        }
 
     }
 }

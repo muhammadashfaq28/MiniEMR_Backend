@@ -9,5 +9,6 @@ namespace Mini_EMR.Repositories.Interfaces
         Task<Patient?> GetByIdAsync(int id);
         Task CreateAsync(Patient patient);
         Task UpdateAsync (Patient patient);
+        Task<List<Visit>> GetVisitsByPatientIdAsync(int patientId);
     }
 }
