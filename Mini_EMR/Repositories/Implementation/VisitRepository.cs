@@ -14,10 +14,11 @@ namespace Mini_EMR.Repositories.Implementation
             _context = context;
         }
         public async Task<Visit?> GetByAppointmentIdAsync(
-            int appointmentId)
+             int appointmentId)
         {
             return await _context.Visits
-                .Include(v => v.Prescriptions)
+                .Include(v => v.Prescriptions!)
+                .ThenInclude(p => p.Medicine)
                 .FirstOrDefaultAsync(v =>
                     v.AppointmentId == appointmentId);
         }

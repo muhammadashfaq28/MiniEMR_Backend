@@ -12,6 +12,7 @@ namespace Mini_EMR.Mappings
             return new AppointmentListModel
             {
                 Id = appointment.Id,
+                PatientId = appointment.PatientId,
                 PatientName = $"{patient.FirstName} {patient.LastName}",
                 Age = CalculateAge(patient.DateOfBirth),
                 Gender = patient.Gender,

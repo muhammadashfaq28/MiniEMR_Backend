@@ -11,6 +11,6 @@
         public string Strength { get; set; } = string.Empty;
 
 
-        public ICollection<Prescription>? Prescriptions { get; set; }
+        public ICollection<Prescription>? Prescriptions { get; set; } 
     }
 }

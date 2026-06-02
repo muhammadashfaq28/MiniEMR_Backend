@@ -4,7 +4,7 @@ namespace Mini_EMR.Repositories.Interfaces
 {
     public interface IAppointmentRepository
     {
-        Task<List<Appointment>> GetAppointmentsByDateAsync(DateTime date, string? Status);
+        Task<List<Appointment>> GetAppointmentsByDateAsync(DateTime? date, string? Status);
         Task<List<Appointment>> GetDoctorTodayAppointmentsAsync(int doctorId , DateTime date);
         Task<Appointment?> GetByIdAsync(int id);
         Task CreateAsync(Appointment appointment);
@@ -17,7 +17,7 @@ namespace Mini_EMR.Repositories.Interfaces
               int CheckedIn,
               int Completed,
               int Cancelled)>
-        GetStatusCountsByDateAsync(DateTime date);
+        GetStatusCountsByDateAsync(DateTime? date);
 
         //Task<int> GetTotalCountAsync(DateTime date);
         //Task<int> GetBookedCountAsync(DateTime date);

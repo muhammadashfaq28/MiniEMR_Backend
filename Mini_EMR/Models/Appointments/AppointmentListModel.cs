@@ -3,6 +3,7 @@
     public class AppointmentListModel
     {
         public int Id { get; set; }
+        public int PatientId { get; set; }
 
         public string PatientName { get; set; } = string.Empty;
 

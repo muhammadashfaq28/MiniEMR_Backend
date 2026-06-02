@@ -15,21 +15,31 @@ namespace Mini_EMR.Repositories.Implementation
         }
 
 
-        public async Task<List<Appointment>> GetAppointmentsByDateAsync(DateTime date, string? status)
+        public async Task<List<Appointment>> GetAppointmentsByDateAsync(DateTime? date,string? status)
         {
-            IQueryable<Appointment> query = _context.Appointments;
+            IQueryable<Appointment> query =
+                _context.Appointments;
 
-            query = query.Where(a =>
-                a.AppointmentDateTime.Date == date.Date);
-
-            if (!string.IsNullOrEmpty(status))
+            if (date.HasValue)
             {
                 query = query.Where(a =>
-                    a.Status.ToString() == status);
+                    a.AppointmentDateTime.Date
+                    == date.Value.Date);
             }
-
+            if (!string.IsNullOrEmpty(status))
+            {
+                if (Enum.TryParse<AppointmentStatus>(
+                    status,
+                    true,
+                    out var parsedStatus))
+                {
+                    query = query.Where(a =>
+                        a.Status == parsedStatus);
+                }
+            }
             return await query
-                .OrderBy(a => a.AppointmentDateTime)
+                .OrderByDescending(a =>
+                    a.AppointmentDateTime)
                 .AsNoTracking()
                 .ToListAsync();
         }
@@ -78,19 +88,26 @@ namespace Mini_EMR.Repositories.Implementation
         }
 
 
-        public async Task
-            <
-            (int Total,
-             int Booked,
-             int CheckedIn,
-             int Completed,
-             int Cancelled)
-            > GetStatusCountsByDateAsync(DateTime date)
+        public async Task<
+    (int Total,
+     int Booked,
+     int CheckedIn,
+     int Completed,
+     int Cancelled)>
+    GetStatusCountsByDateAsync(DateTime? date)
         {
+            IQueryable<Appointment> query =
+                _context.Appointments;
+
+            if (date.HasValue)
+            {
+                query = query.Where(a =>
+                    a.AppointmentDateTime.Date
+                    == date.Value.Date);
+            }
+
             var appointments =
-                await _context.Appointments
-                    .Where(a =>
-                        a.AppointmentDateTime.Date == date.Date)
+                await query
                     .AsNoTracking()
                     .ToListAsync();
 
@@ -110,9 +127,6 @@ namespace Mini_EMR.Repositories.Implementation
                 Cancelled: appointments.Count(a =>
                     a.Status == AppointmentStatus.Cancelled)
             );
-
-
-
         }
     }
 }

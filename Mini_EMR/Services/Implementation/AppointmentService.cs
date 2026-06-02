@@ -22,7 +22,7 @@ namespace Mini_EMR.Services.Implementation
         }
 
 
-        public async Task<List<AppointmentListModel>> GetAppointmentsByDateAsync(DateTime date,string? status)
+        public async Task<List<AppointmentListModel>> GetAppointmentsByDateAsync(DateTime? date,string? status)
         {
             var appointments =
                 await _appointmentRepository
@@ -150,7 +150,7 @@ namespace Mini_EMR.Services.Implementation
         }
 
 
-        public async Task<AppointmentStatusCountsModel> GetStatusCountsByDateAsync(DateTime date)
+        public async Task<AppointmentStatusCountsModel> GetStatusCountsByDateAsync(DateTime? date)
         {
             var counts =
                 await _appointmentRepository.GetStatusCountsByDateAsync(date);

@@ -23,7 +23,7 @@ namespace Mini_EMR.Controllers
 
         [HttpGet]
         public async Task<IActionResult> GetAppointmentsByDateAsync(
-                [FromQuery] DateTime date,
+                [FromQuery] DateTime? date,
                 [FromQuery] string? status)
         {
             var appointments =
@@ -151,7 +151,7 @@ namespace Mini_EMR.Controllers
         //  STATUS COUNTS 
 
         [HttpGet("status-counts")]
-        public async Task<IActionResult>GetStatusCountsByDateAsync([FromQuery] DateTime date)
+        public async Task<IActionResult>GetStatusCountsByDateAsync([FromQuery] DateTime? date)
         {
             var counts =
                 await _service
