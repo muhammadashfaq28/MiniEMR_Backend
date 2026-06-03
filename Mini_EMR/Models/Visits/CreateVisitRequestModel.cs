@@ -1,4 +1,6 @@
-﻿namespace Mini_EMR.Models.Visits
+﻿using System.Text.Json.Serialization;
+
+namespace Mini_EMR.Models.Visits
 {
     public class CreateVisitRequestModel
     {
@@ -6,9 +8,7 @@
         public string ChiefComplaint { get; set; } = string.Empty;
         public string VisitNote { get; set; } = string.Empty;
         public string Diagnosis { get; set; } = string.Empty;
-
-        // Vitals
-
+        // Vital
         public decimal? HeightCm { get; set; }
         public decimal? WeightKg { get; set; }
         public int? BpSystolic { get; set; }

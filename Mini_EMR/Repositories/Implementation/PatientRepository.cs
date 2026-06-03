@@ -39,6 +39,7 @@ namespace Mini_EMR.Repositories.Implementation
         public async Task<List<Visit>> GetVisitsByPatientIdAsync(int patientId)
         {
             return await _context.Visits
+                .AsNoTracking()
                 .Include(v => v.Appointment)
                     .ThenInclude(a => a.Doctor)
                 .Include(v => v.Prescriptions)

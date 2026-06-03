@@ -70,6 +70,7 @@ namespace Mini_EMR.Mappings
             {
                 Id = visit.Id,
                 AppointmentId = visit.AppointmentId,
+                DoctorName = visit.Appointment?.Doctor?.FullName ?? string.Empty,
                 ChiefComplaint = visit.ChiefComplaint,
                 VisitNote = visit.VisitNote,
                 Diagnosis = visit.Diagnosis,
